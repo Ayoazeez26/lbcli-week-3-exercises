@@ -49,7 +49,7 @@ jobs:
         run: |
           chmod +x submission/01.sh
           WALLET=$(submission/01.sh)
-          if [[ "$WALLET" == *"btrustwallet"* ]]; then
+          if [[ "$WALLET" == *"builderswallet"* ]]; then
             echo "✅ Success: Wallet creation passed!"
           else
             echo "❌ Error: Wallet creation failed!"
@@ -114,10 +114,22 @@ jobs:
             exit 1
           fi
 
-      - name: 07.sh - Verify Receivers Address Partially Signed Bitcoin Transaction
+      - name: 07.sh - Verify Total Transaction Output Amount In Satoshis
         run: |
           chmod +x submission/07.sh
-          ADD=$(submission/07.sh)
+          ACTUAL_OUTPUT=$(submission/07.sh)
+          EXPECTED_OUTPUT=650
+          if [[ "$ACTUAL_OUTPUT" == "$EXPECTED_OUTPUT" ]]; then
+            echo "✅ Success: Total Transaction Output Amount In Satoshis Check passed!"
+          else
+            echo "❌ Error: Total Transaction Output Amount In Satoshis Check failed!"
+            exit 1
+          fi
+
+      - name: 08.sh - Verify Receivers Address Partially Signed Bitcoin Transaction
+        run: |
+          chmod +x submission/08.sh
+          ADD=$(submission/08.sh)
           if [[ "$ADD" == "bcrt1qcaedd724gts3aug73m78c7nfsv9d8zs9znw8py" ]]; then
             echo "✅ Success: Address Verification for Partially Signed Bitcoin Transaction passed!"
           else

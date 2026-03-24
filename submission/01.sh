@@ -1,1 +1,1 @@
-# Create a wallet with the name "btrustwallet".
+# Create a wallet with the name "builderswallet".
