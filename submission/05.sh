@@ -12,8 +12,4 @@ amount=0.20000000 # 20,000,000 satoshis in BTC
 
 rawtx=$(bitcoin-cli -regtest -named createrawtransaction inputs='[{"txid":"'"$txid"'","vout":0},{"txid":"'"$txid"'","vout":1}]' outputs='{"'"$recipient"'":'"$amount"'}')
 
-echo "Raw tx: $rawtx"
-
-psbt=$(bitcoin-cli -regtest -named converttopsbt hexstring="$rawtx")
-
-echo "PSBT: $psbt"
+bitcoin-cli -regtest -named converttopsbt hexstring="$rawtx"
